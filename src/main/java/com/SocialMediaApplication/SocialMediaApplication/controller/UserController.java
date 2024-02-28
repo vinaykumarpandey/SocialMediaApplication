@@ -4,9 +4,7 @@ package com.SocialMediaApplication.SocialMediaApplication.controller;
 import com.SocialMediaApplication.SocialMediaApplication.model.User;
 import com.SocialMediaApplication.SocialMediaApplication.service.UserDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,9 @@ public class UserController {
       return   userDaoService.findUserById(id);
     }
 
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user){
+        return userDaoService.saveUser(user);
+    }
 
 }
