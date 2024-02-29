@@ -33,7 +33,7 @@ Introduction to Spring boot Application
 
 Spring boot Demo Code
 
-    - Introduction to Intelllij
+    - Introduction to Intellij
     - IntelliJ and java installation and configuration
     - Introduction to Spring Initializr and project creation
     - Introduction to Git
@@ -50,6 +50,11 @@ Building Rest API’s for Social Media Application
    - Introduction to HTTP methods-GET, POST, DELETE, PUT
    - Introduction to various annotation in Spring boot and its usage
    - Creation of CRUD API’s for SocialMediaApplication (on going)
+   - Introduced with various Http response codes - 500, 404, 400, 201, 302 etc.
+   - Implemented exception handling
+   - Created custom exception handler
+   - Introduced with Aspect oriented programming in spring boot
+   - introduced with Response Entity
 
 
 

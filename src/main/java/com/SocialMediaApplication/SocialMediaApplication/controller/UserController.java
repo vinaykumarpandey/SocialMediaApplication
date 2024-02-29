@@ -4,7 +4,10 @@ package com.SocialMediaApplication.SocialMediaApplication.controller;
 import com.SocialMediaApplication.SocialMediaApplication.model.User;
 import com.SocialMediaApplication.SocialMediaApplication.service.UserDaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
 
@@ -29,8 +32,30 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public User createUser(@RequestBody User user){
-        return userDaoService.saveUser(user);
+    public ResponseEntity<String> createUser(@RequestBody User user){
+
+        User savedUser = userDaoService.saveUser(user);
+        String uri = ServletUriComponentsBuilder.fromCurrentRequest() //http://localhost:8080/users
+                                                .path("/{id}") //http://localhost:8080/users/+ "{id}"
+                                                .buildAndExpand(savedUser.getId()).toUriString();
+                                                   /*"http://localhost:8080/users/5"*/
+
+        return new ResponseEntity<>(uri, HttpStatus.CREATED);
+    }
+
+/*    http://localhost:8080/users/4
+    http://localhost:8080/users/5*/
+
+    @DeleteMapping("/users/{id}")
+    public Boolean deleteUser(@PathVariable("id") int id){
+        return   userDaoService.deleteUserById(id);
+    }
+
+    @PutMapping("/users")
+    public ResponseEntity<User> updateUser(@RequestBody User user){
+        User updatedUser = userDaoService.updateUser(user);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+
     }
 
 }

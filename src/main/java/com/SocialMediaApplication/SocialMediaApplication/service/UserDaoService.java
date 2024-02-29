@@ -51,6 +51,43 @@ public class UserDaoService {
 
   }
 
+    public Boolean deleteUserById(int id) {
+
+        for(User user: userList){
+            if(user.getId() == id){
+                userList.remove(user);
+                return true;
+            }
+
+        }
+
+        throw new UserNotFoundException("User not found with the given id: " +id);
+
+    }
+
+    public User updateUser(User newUser){
+        /*
+        * 1. get the id from the user object
+        * 2. check if the id is matching in userlist
+        * 3. once you get the corresponding user object of the id
+        * 4. update that user
+        * */
+
+      //  get the id from the user object
+
+        for(User existingUser: userList){
+            if(existingUser.getId() == newUser.getId()){
+                userList.set(existingUser.getId(), newUser);
+                return newUser;
+            }
+
+        }
+
+        throw new UserNotFoundException("User not found with the given id: " +newUser.getId());
+
+
+    }
+
 
 
 
@@ -62,7 +99,7 @@ public class UserDaoService {
     public  User findUserById(int id);  --> Done
 
 
-    public boolean deleteUser(int id);
+    public boolean deleteUser(int id); --> working on
 
     public User updateUser(int id, User user);
 
