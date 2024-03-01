@@ -3,6 +3,7 @@ package com.SocialMediaApplication.SocialMediaApplication.controller;
 
 import com.SocialMediaApplication.SocialMediaApplication.model.User;
 import com.SocialMediaApplication.SocialMediaApplication.service.UserDaoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/users")
-    public ResponseEntity<String> createUser(@RequestBody User user){
+    public ResponseEntity<String> createUser(@Valid @RequestBody User user){
 
         User savedUser = userDaoService.saveUser(user);
         String uri = ServletUriComponentsBuilder.fromCurrentRequest() //http://localhost:8080/users
@@ -41,6 +42,9 @@ public class UserController {
                                                    /*"http://localhost:8080/users/5"*/
 
         return new ResponseEntity<>(uri, HttpStatus.CREATED);
+        //need to add some sort of validation for name and birthDate
+        // Spring boot provides you a dependency through which you can validate multiple attributes
+        // spring-validation
     }
 
 /*    http://localhost:8080/users/4
@@ -53,6 +57,7 @@ public class UserController {
 
     @PutMapping("/users")
     public ResponseEntity<User> updateUser(@RequestBody User user){
+        //TODO: There is a bug in this api - you need to find the bug
         User updatedUser = userDaoService.updateUser(user);
         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
 

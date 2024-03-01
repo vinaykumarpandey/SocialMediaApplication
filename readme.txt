@@ -54,7 +54,9 @@ Building Rest API’s for Social Media Application
    - Implemented exception handling
    - Created custom exception handler
    - Introduced with Aspect oriented programming in spring boot
-   - introduced with Response Entity
+   - introduced with ResponseEntity
+   - Introduction to spring validation-> DONE
+   - swagger-ui for api testing -> Will cover in next class
 
 
 
